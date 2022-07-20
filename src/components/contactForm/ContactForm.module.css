@@ -1,0 +1,72 @@
+.form {
+   position: relative;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+}
+
+.input::placeholder {
+   font-size: 14px;
+   opacity: .2;
+   line-height: 1.7;
+}
+
+.input {
+   width: 230px;
+   margin-bottom: 15px;
+   border: none;
+   background-color: inherit;
+   border: 0;
+   padding: 7px 0;
+   outline: none;
+   border-bottom: 1px solid #ccc;
+}
+
+.input[type='text']~.inputNameFocus,
+.input[type='text']~.inputTelFocus {
+   position: absolute;
+   width: 0;
+   height: 2px;
+   background-color: rgb(63, 40, 40);
+   transition: 0.4s;
+}
+
+.input[type='text']~.inputNameFocus {
+   top: 29px;
+   left: 75px;
+
+}
+
+.input[type='text']:focus~.inputNameFocus,
+.input[type='tel']:focus~.inputTelFocus {
+   width: 230px;
+   transition: 0.4s;
+}
+
+.input[type='tel']~.inputTelFocus {
+   top: 73px;
+   left: 75px;
+}
+
+.btn {
+   border-radius: 5px;
+   padding: 5px 10px;
+   cursor: pointer;
+   border: none;
+   font-family: 'Comfortaa', cursive;
+   color: rgba(255, 255, 255, 0.5);
+   font-size: 14px;
+
+   box-shadow: inset 0px 3px 5px rgba(255, 255, 255, 0.5), 0px 0px 10px rgba(0, 0, 0, 0.15);
+   background: rgb(2, 0, 36);
+   background: linear-gradient(45deg, rgba(2, 0, 36, 0) 5%, rgba(255, 255, 255, .5) 6%, rgba(255, 255, 255, 0) 9%, rgba(255, 255, 255, .5) 10%, rgba(255, 255, 255, 0) 17%, rgba(255, 255, 255, .5) 19%, rgba(255, 255, 255, 0) 21%);
+   background-size: 150%;
+   background-position: right;
+   transition: all .25s ease-in-out;
+}
+
+.btn:hover {
+   background-position: left;
+   color: white;
+   box-shadow: inset 0px 3px 5px rgba(255, 255, 255, 1), 0px 0px 10px rgba(0, 0, 0, 0.25);
+}

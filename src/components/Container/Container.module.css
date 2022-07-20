@@ -1,0 +1,10 @@
+.container {
+   margin: 0 auto;
+   width: 400px;
+   padding: 20px;
+   min-height: 220px;
+
+   background-color: #b39e9e;
+   border-radius: 10px;
+   box-shadow: 0 3px 8px rgb(0 0 0 / 24%);
+}

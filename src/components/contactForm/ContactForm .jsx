@@ -21,7 +21,7 @@ const schema = yup.object().shape({
     .string()
     .matches(/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/)
     .required(),
-  phone: yup
+  number: yup
     .string()
     .matches(
       /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/
@@ -29,7 +29,7 @@ const schema = yup.object().shape({
     .required(),
 });
 
-const initialValues = { name: '', phone: '' };
+const initialValues = { name: '', number: '' };
 
 const ContactForm = () => {
   const { data } = useFetchContactsQuery();
@@ -66,10 +66,10 @@ const ContactForm = () => {
           placeholder="Phone number"
           className={s.input}
           type="tel"
-          name="phone"
+          name="number"
         />
         <span className={s.inputTelFocus}></span>
-        <ErrorMessage name="phone" render={warningNumberValidation} />
+        <ErrorMessage name="number" render={warningNumberValidation} />
 
         <button className={s.btn} type="submit">
           {isLoading ? <Loader /> : 'Add contact'}

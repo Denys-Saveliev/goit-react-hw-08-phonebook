@@ -32,7 +32,18 @@ export const AppNavBar = () => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        sx={{
+          mb: 3,
+          background: '#b39e9e',
+          color: '#00000080',
+          fontStyle: 'italic',
+          borderRadius: '10px',
+          pt: 1.5,
+          pb: 1.5,
+        }}
+      >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
@@ -49,6 +60,7 @@ export const AppNavBar = () => {
                 color: 'inherit',
                 textDecoration: 'none',
                 flexGrow: 1,
+                fontSize: '26px',
               }}
             >
               Phonebook
@@ -59,14 +71,24 @@ export const AppNavBar = () => {
                 <Typography
                   variant="h6"
                   component="div"
-                  sx={{ flexGrow: 0, mr: '2' }}
+                  sx={{ flexGrow: 0, mr: 2 }}
                 >
                   {name}
                 </Typography>
                 <Box sx={{ flexGrow: 0, ml: 'auto' }}>
                   <Tooltip title="Profile menu">
-                    <IconButton onClick={handleMenu} sx={{ p: 0 }}>
-                      <Avatar sx={{ bgcolor: 'lightgray' }}>
+                    <IconButton
+                      onClick={handleMenu}
+                      sx={{
+                        p: 0,
+                      }}
+                    >
+                      <Avatar
+                        sx={{
+                          bgcolor: '#00000080',
+                          color: ' #b39e9e',
+                        }}
+                      >
                         {avatarName}
                       </Avatar>
                     </IconButton>
@@ -93,7 +115,15 @@ export const AppNavBar = () => {
                         handleClose();
                       }}
                     >
-                      <Typography textAlign="center">Logout</Typography>
+                      <Typography
+                        sx={{
+                          textAlign: 'center',
+                          color: '#00000080',
+                          fontStyle: 'italic',
+                        }}
+                      >
+                        Logout
+                      </Typography>
                     </MenuItem>
                   </Menu>
                 </Box>

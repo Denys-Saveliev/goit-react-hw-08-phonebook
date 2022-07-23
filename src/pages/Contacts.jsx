@@ -21,16 +21,17 @@ const Contacts = () => {
       </Section>
       {isLoading && <Loader />}
 
-      <Section title="Contacts">
-        <Filter value={filter} onChange={handleFilterChange} />
-        {showData && (
+      {showData && (
+        <Section title="Contacts">
+          <Filter value={filter} onChange={handleFilterChange} />
+
           <ContactList
             contacts={data.filter(({ name }) =>
               name.toLowerCase().includes(filter.toLowerCase())
             )}
           />
-        )}
-      </Section>
+        </Section>
+      )}
     </Container>
   );
 };

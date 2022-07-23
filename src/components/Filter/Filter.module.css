@@ -17,7 +17,7 @@
 
 .input[type='text']~.inputFocusFilter {
    position: absolute;
-   top: 388px;
+   top: 475px;
    left: 568px;
    width: 0;
    height: 2px;

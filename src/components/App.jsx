@@ -7,6 +7,7 @@ import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { AppNavBar } from './AppNavBar/AppNavBar';
 import { Loader } from './Loader/Loader';
+import HeaderContainer from './HeaderContainer/HeaderContainer';
 
 const Register = lazy(() => import('../pages/Register'));
 const Login = lazy(() => import('../pages/Login'));
@@ -23,7 +24,7 @@ function App() {
     }
   }, [currentToken, data, dispatch]);
   return (
-    <>
+    <HeaderContainer>
       {isLoading ? (
         <Loader />
       ) : (
@@ -60,7 +61,7 @@ function App() {
           </Suspense>
         </>
       )}
-    </>
+    </HeaderContainer>
   );
 }
 

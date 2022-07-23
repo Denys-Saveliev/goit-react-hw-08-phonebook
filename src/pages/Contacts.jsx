@@ -7,7 +7,7 @@ import { Loader } from '../components/Loader/Loader';
 import { useFetchContactsQuery } from 'redux/contacts/contactsApiSlice';
 import { useState } from 'react';
 
-export const Contacts = () => {
+const Contacts = () => {
   const [filter, setfilter] = useState('');
   const handleFilterChange = e => setfilter(e.target.value);
   const { isLoading, data } = useFetchContactsQuery();
@@ -16,7 +16,7 @@ export const Contacts = () => {
 
   return (
     <Container>
-      <Section title="Phonebook">
+      <Section title="Create a new contact">
         <ContactForm />
       </Section>
       {isLoading && <Loader />}
@@ -34,3 +34,5 @@ export const Contacts = () => {
     </Container>
   );
 };
+
+export default Contacts;

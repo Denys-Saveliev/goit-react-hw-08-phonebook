@@ -3,7 +3,6 @@ import { logOut, setCredentials } from './auth/authSlice';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: 'https://connections-api.herokuapp.com',
-  // credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
     if (token) {

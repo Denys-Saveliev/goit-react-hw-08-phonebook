@@ -3,7 +3,7 @@ import { getCurrentStatus } from 'redux/auth/authSlice';
 import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const PubliceRoute = ({
+const PublicRoute = ({
   children,
   redirectTo = '/contacts',
   restricted = false,
@@ -13,7 +13,7 @@ const PubliceRoute = ({
   return shouldRedirect ? <Navigate to={redirectTo} /> : children;
 };
 
-PubliceRoute.propTypes = {
+PublicRoute.propTypes = {
   redirectTo: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -21,4 +21,4 @@ PubliceRoute.propTypes = {
   ]),
 };
 
-export default PubliceRoute;
+export default PublicRoute;

@@ -16,23 +16,27 @@ import { useDispatch } from 'react-redux';
 
 function Copyright(props) {
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
+    <Typography variant="body2" color="#00000080" align="center" {...props}>
       {'Created by '}
       <Link color="inherit" href="https://github.com/Denys-Saveliev">
         Denys Saveliev
       </Link>{' '}
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#b39e9e',
+      contrastText: '#00000080',
+    },
+  },
+  typography: {
+    fontFamily: 'Comfortaa, cursive',
+  },
+});
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -77,10 +81,10 @@ export default function Register() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: '#b39e9e' }}>
+            <LockOutlinedIcon sx={{ color: '#00000080' }} />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" sx={{ color: '#00000080' }}>
             Sign up
           </Typography>
           <Box
@@ -130,14 +134,18 @@ export default function Register() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, fontWeight: '700' }}
               disabled={isRegistering}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link href="/goit-react-hw-08-phonebook/login" variant="body2">
+                <Link
+                  href="/goit-react-hw-08-phonebook/login"
+                  variant="body2"
+                  color="#b39e9e"
+                >
                   Already have an account? Sign in
                 </Link>
               </Grid>

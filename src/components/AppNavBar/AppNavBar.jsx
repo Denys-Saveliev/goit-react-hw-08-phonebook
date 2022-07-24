@@ -10,6 +10,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -21,8 +23,7 @@ export const AppNavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   let navigate = useNavigate();
   const name = useSelector(getCurrentUser);
-  const avatarName = name && name.slice(0, 2);
-
+  const avatarName = name && name[0];
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -30,15 +31,20 @@ export const AppNavBar = () => {
     setAnchorEl(null);
   };
 
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'Comfortaa, cursive',
+    },
+  });
+
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <AppBar
         position="static"
         sx={{
           mb: 3,
           background: '#b39e9e',
           color: '#00000080',
-          fontStyle: 'italic',
           borderRadius: '10px',
           pt: 1.5,
           pb: 1.5,
@@ -54,7 +60,6 @@ export const AppNavBar = () => {
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
-                fontFamily: '"Comfortaa", cursive',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'inherit',
@@ -119,7 +124,6 @@ export const AppNavBar = () => {
                         sx={{
                           textAlign: 'center',
                           color: '#00000080',
-                          fontStyle: 'italic',
                         }}
                       >
                         Logout
@@ -130,10 +134,18 @@ export const AppNavBar = () => {
               </>
             ) : (
               <>
-                <Button color="inherit" onClick={() => navigate('/register')}>
+                <Button
+                  sx={{ fontWeight: '700' }}
+                  color="inherit"
+                  onClick={() => navigate('/register')}
+                >
                   Sign UP
                 </Button>
-                <Button color="inherit" onClick={() => navigate('/login')}>
+                <Button
+                  sx={{ fontWeight: '700' }}
+                  color="inherit"
+                  onClick={() => navigate('/login')}
+                >
                   Sign IN
                 </Button>
               </>
@@ -141,6 +153,6 @@ export const AppNavBar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-    </>
+    </ThemeProvider>
   );
 };

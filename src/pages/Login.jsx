@@ -9,31 +9,36 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { useLoginUserMutation } from 'redux/auth/authApiSlice';
 import { setCredentials } from 'redux/auth/authSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { createTheme } from '@mui/material/styles';
 
 function Copyright(props) {
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
+    <Typography variant="body2" color="#00000080" align="center" {...props}>
       {'Created by '}
       <Link color="inherit" href="https://github.com/Denys-Saveliev">
         Denys Saveliev
       </Link>{' '}
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#b39e9e',
+      contrastText: '#00000080',
+    },
+  },
+  typography: {
+    fontFamily: 'Comfortaa, cursive',
+  },
+});
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -73,17 +78,17 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: '#b39e9e' }}>
+            <LockOutlinedIcon sx={{ color: '#00000080' }} />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" sx={{ color: '#00000080' }}>
             Sign in
           </Typography>
           <Box
             component="form"
             onSubmit={handleSubmit}
             noValidate
-            sx={{ mt: 1 }}
+            sx={{ mt: 3 }}
           >
             <TextField
               margin="normal"
@@ -112,7 +117,7 @@ export default function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, fontWeight: '700' }}
               disabled={isLogging}
             >
               Sign In
@@ -122,6 +127,7 @@ export default function Login() {
                 <Link
                   href="/goit-react-hw-08-phonebook/register"
                   variant="body2"
+                  color="#b39e9e"
                 >
                   {"Don't have an account? Sign Up"}
                 </Link>

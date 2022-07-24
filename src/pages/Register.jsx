@@ -45,8 +45,7 @@ export default function Register() {
 
   const dispatch = useDispatch();
 
-  const [registerUser, { isRegistering }] = useRegisterUserMutation();
-
+  const [registerUser, { isUninitialized }] = useRegisterUserMutation();
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
@@ -63,7 +62,9 @@ export default function Register() {
   const handleSubmit = async e => {
     e.preventDefault();
     const userData = await registerUser({ name, email, password }).unwrap();
+
     dispatch(setCredentials({ ...userData, email }));
+
     setName('');
     setEmail('');
     setPassword('');
@@ -135,7 +136,7 @@ export default function Register() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, fontWeight: '700' }}
-              disabled={isRegistering}
+              disabled={!isUninitialized}
             >
               Sign Up
             </Button>

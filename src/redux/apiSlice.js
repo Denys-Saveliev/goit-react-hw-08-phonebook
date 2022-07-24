@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { logOut, setCredentials } from './auth/authSlice';
+import { logOut } from './auth/authSlice';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: 'https://connections-api.herokuapp.com',
@@ -15,18 +15,21 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result?.error?.originalStatus === 401) {
-    console.log('Sending refresh token');
-    const refreshResult = await baseQuery('/users/current', api, extraOptions);
-    console.log(refreshResult);
-    if (refreshResult?.data) {
-      const user = api.getState().auth.user;
-      api.dispatch(setCredentials({ ...refreshResult.data, user }));
-      result = await baseQuery(args, api, extraOptions);
-    } else {
-      api.dispatch(logOut());
-    }
-  }
+  //   if (!result?.meta?.response?.ok) {
+  //     //console.log('Ошибочка');
+  //     //  let errorMessage = '';
+  //     switch (result.meta.response.status) {
+  //       case 400:
+  //         console.log('Email or password is incorrect');
+  //         break;
+  //       case 401:
+  //         console.log('Email or password is incorrect');
+  //         break;
+  //       default:
+  //         console.log('Something went wrong! Try again!');
+  //     }
+  //     api.dispatch(logOut());
+  //   }
   return result;
 };
 

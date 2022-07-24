@@ -21,8 +21,11 @@ function App() {
   useEffect(() => {
     if (data) {
       dispatch(setCredentials({ user: data, token: currentToken }));
+    } else {
+      return;
     }
   }, [currentToken, data, dispatch]);
+
   return (
     <HeaderContainer>
       {isLoading ? (

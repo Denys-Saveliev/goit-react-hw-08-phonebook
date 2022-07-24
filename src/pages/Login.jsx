@@ -44,7 +44,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [loginUser, { isLogging }] = useLoginUserMutation();
+  const [loginUser, { isUninitialized }] = useLoginUserMutation();
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -118,7 +118,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, fontWeight: '700' }}
-              disabled={isLogging}
+              disabled={!isUninitialized}
             >
               Sign In
             </Button>

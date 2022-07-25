@@ -40,9 +40,10 @@ export const AppNavBar = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppBar
-        position="static"
+        position="fixed"
         sx={{
           mb: 3,
+
           background: '#b39e9e',
           color: '#00000080',
           borderRadius: '10px',

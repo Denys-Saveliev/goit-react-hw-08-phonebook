@@ -33,7 +33,7 @@
 
 .input[type='text']~.inputNameFocus {
    top: 29px;
-   left: 75px;
+   left: 125px;
 
 }
 
@@ -45,7 +45,7 @@
 
 .input[type='tel']~.inputTelFocus {
    top: 73px;
-   left: 75px;
+   left: 125px;
 }
 
 .btn {

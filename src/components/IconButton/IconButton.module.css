@@ -1,0 +1,13 @@
+.IconButton {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   cursor: pointer;
+   background-color: inherit;
+   border: none;
+}
+
+.IconButton:hover,
+.IconButton:focus {
+   opacity: .8;
+}

@@ -1,10 +1,11 @@
 import { useDeleteContactMutation } from 'redux/contacts/contactsApiSlice';
+
 import Notiflix from 'notiflix';
 import { Loader } from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
 import s from './ContactListItem.module.css';
 
-export const ContactListItem = ({ id, name, number }) => {
+export const ContactListItem = ({ id, name, number, edit }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
 
   const handleDeleteContact = contactId =>
@@ -17,9 +18,14 @@ export const ContactListItem = ({ id, name, number }) => {
       <div className={s.itemContact}>
         <p>{name}:</p> <p>{number}</p>
       </div>
-      <button className={s.btn} onClick={() => handleDeleteContact(id)}>
-        {isLoading ? <Loader /> : 'Delete'}
-      </button>
+      <div>
+        <button className={s.btn} onClick={edit}>
+          Edit
+        </button>
+        <button className={s.btn} onClick={() => handleDeleteContact(id)}>
+          {isLoading ? <Loader /> : 'Delete'}
+        </button>
+      </div>
     </li>
   );
 };
@@ -28,4 +34,5 @@ ContactListItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
+  edit: PropTypes.func.isRequired,
 };

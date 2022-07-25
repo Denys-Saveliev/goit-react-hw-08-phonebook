@@ -24,6 +24,17 @@ export const contactsApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Contacts'],
     }),
+    editContact: builder.mutation({
+      query: ({ name, number, id }) => ({
+        url: `/contacts/${id}`,
+        method: 'PATCH',
+        body: {
+          name,
+          number,
+        },
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
   }),
 });
 
@@ -31,4 +42,5 @@ export const {
   useFetchContactsQuery,
   useDeleteContactMutation,
   useCreateContactMutation,
+  useEditContactMutation,
 } = contactsApi;

@@ -1,25 +1,53 @@
-.item {
+.form {
+   position: relative;
    display: flex;
-   justify-content: space-between;
    align-items: center;
-   height: 25px;
-   padding: 15px 0;
-   font-style: italic;
-   color: rgb(63, 40, 40);
-}
-
-.item:not(:last-child) {
-   border-bottom: 1px solid rgb(119, 119, 119, .5);
+   flex-direction: column;
 
 }
 
-.itemContact {
-   display: flex;
-   justify-content: space-between;
-   width: 320px;
+.input::placeholder {
+   font-size: 14px;
+   opacity: .2;
+   line-height: 1.7;
 }
 
+.input {
+   width: 230px;
+   margin-bottom: 15px;
+   border: none;
+   background-color: inherit;
+   border: 0;
+   padding: 7px 0;
+   outline: none;
+   border-bottom: 1px solid #ccc;
+}
 
+.input[type='text']~.inputNameFocus,
+.input[type='text']~.inputTelFocus {
+   position: absolute;
+   width: 0;
+   height: 2px;
+   background-color: rgb(63, 40, 40);
+   transition: 0.4s;
+}
+
+.input[type='text']~.inputNameFocus {
+   top: 29px;
+   left: 100px;
+
+}
+
+.input[type='text']:focus~.inputNameFocus,
+.input[type='tel']:focus~.inputTelFocus {
+   width: 230px;
+   transition: 0.4s;
+}
+
+.input[type='tel']~.inputTelFocus {
+   top: 73px;
+   left: 100px;
+}
 
 .btn {
    border-radius: 5px;
@@ -35,10 +63,6 @@
    background-size: 150%;
    background-position: right;
    transition: all .25s ease-in-out;
-}
-
-.btn:first-child {
-   margin-right: 8px;
 }
 
 .btn:hover {

@@ -69,7 +69,7 @@ const EditContactForm = ({ close, initialValues }) => {
         <ErrorMessage name="number" render={warningNumberValidation} />
 
         <button className={s.btn} type="submit">
-          {isLoading ? <Loader /> : 'Edit'}
+          {isLoading ? <Loader /> : 'Save'}
         </button>
       </Form>
     </Formik>

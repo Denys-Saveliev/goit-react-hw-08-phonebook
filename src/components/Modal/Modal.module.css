@@ -14,7 +14,20 @@
 .Modal {
    position: relative;
    background-color: #b39e9e;
-   width: 450px;
+   width: 340px;
    height: 230px;
    border-radius: 10px;
+
+}
+
+@media screen and (min-width: 768px) {
+   .Modal {
+      width: 400px;
+   }
+}
+
+@media screen and (min-width: 1280px) {
+   .Modal {
+      width: 460px;
+   }
 }

@@ -1,14 +1,14 @@
 import React from 'react';
-import s from './HeaderContainer.module.css';
+import s from './MainContainer.module.css';
 import PropTypes from 'prop-types';
 
-const HeaderContainer = ({ children }) => {
+const MainContainer = ({ children }) => {
   return <div className={s.container}>{children}</div>;
 };
 
-export default HeaderContainer;
+export default MainContainer;
 
-HeaderContainer.propTypes = {
+MainContainer.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

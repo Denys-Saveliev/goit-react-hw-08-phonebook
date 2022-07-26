@@ -3,7 +3,7 @@ import s from './Container.module.css';
 import PropTypes from 'prop-types';
 
 const Container = ({ children }) => (
-  <section className={s.container}>{children}</section>
+  <div className={s.container}>{children}</div>
 );
 
 export default Container;

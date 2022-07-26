@@ -7,7 +7,7 @@ import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { AppNavBar } from './AppNavBar/AppNavBar';
 import { Loader } from './Loader/Loader';
-import HeaderContainer from './HeaderContainer/HeaderContainer';
+import MainContainer from './MainContainer/MainContainer';
 
 const Register = lazy(() => import('../pages/Register'));
 const Login = lazy(() => import('../pages/Login'));
@@ -27,44 +27,46 @@ function App() {
   }, [currentToken, data, dispatch]);
 
   return (
-    <HeaderContainer>
+    <>
       {isLoading ? (
         <Loader />
       ) : (
         <>
           <AppNavBar />
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route path="*" element={<Navigate to="/register" />} />
-              <Route
-                path="/register"
-                element={
-                  <PublicRoute restricted>
-                    <Register />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path="/login"
-                element={
-                  <PublicRoute restricted>
-                    <Login />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path="/contacts"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <Contacts />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
-          </Suspense>
+          <MainContainer>
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                <Route path="*" element={<Navigate to="/register" />} />
+                <Route
+                  path="/register"
+                  element={
+                    <PublicRoute restricted>
+                      <Register />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="/login"
+                  element={
+                    <PublicRoute restricted>
+                      <Login />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="/contacts"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <Contacts />
+                    </PrivateRoute>
+                  }
+                />
+              </Routes>
+            </Suspense>
+          </MainContainer>
         </>
       )}
-    </HeaderContainer>
+    </>
   );
 }
 

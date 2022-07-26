@@ -16,7 +16,8 @@ export const ContactListItem = ({ id, name, number, edit }) => {
   return (
     <li className={s.item}>
       <div className={s.itemContact}>
-        <p>{name}:</p> <p>{number}</p>
+        <p className={s.itemText}>{name}:</p>{' '}
+        <p className={s.itemText}>{number}</p>
       </div>
       <div>
         <button className={s.btn} onClick={edit}>

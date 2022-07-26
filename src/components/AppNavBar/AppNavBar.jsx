@@ -35,6 +35,14 @@ export const AppNavBar = () => {
     typography: {
       fontFamily: 'Comfortaa, cursive',
     },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 380,
+        md: 768,
+        lg: 1280,
+      },
+    },
   });
 
   return (
@@ -42,13 +50,12 @@ export const AppNavBar = () => {
       <AppBar
         position="fixed"
         sx={{
-          mb: 3,
-
+          width: '100%',
           background: '#b39e9e',
           color: '#00000080',
           borderRadius: '10px',
-          pt: 1.5,
-          pb: 1.5,
+          pt: 2,
+          pb: 2,
         }}
       >
         <Container maxWidth="xl">
@@ -60,13 +67,13 @@ export const AppNavBar = () => {
               href="contacts"
               sx={{
                 mr: 2,
-                display: { xs: 'none', md: 'flex' },
+                display: 'flex',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'inherit',
                 textDecoration: 'none',
                 flexGrow: 1,
-                fontSize: '26px',
+                fontSize: { sm: '18px', md: '22px', lg: '26px' },
               }}
             >
               Phonebook
@@ -77,7 +84,16 @@ export const AppNavBar = () => {
                 <Typography
                   variant="h6"
                   component="div"
-                  sx={{ flexGrow: 0, mr: 2 }}
+                  sx={{
+                    flexGrow: 0,
+                    mr: 2,
+                    fontSize: {
+                      xs: '16px',
+                      sm: '16px',
+                      md: '18px',
+                      lg: '20px',
+                    },
+                  }}
                 >
                   {name}
                 </Typography>
@@ -136,15 +152,21 @@ export const AppNavBar = () => {
             ) : (
               <>
                 <Button
-                  sx={{ fontWeight: '700' }}
-                  color="inherit"
+                  sx={{
+                    fontWeight: '700',
+                    color: 'inherit',
+                    fontSize: { sm: '13px', md: '14px', lg: '16px' },
+                  }}
                   onClick={() => navigate('/register')}
                 >
                   Sign UP
                 </Button>
                 <Button
-                  sx={{ fontWeight: '700' }}
-                  color="inherit"
+                  sx={{
+                    fontWeight: '700',
+                    color: 'inherit',
+                    fontSize: { sm: '13px', md: '14px', lg: '16px' },
+                  }}
                   onClick={() => navigate('/login')}
                 >
                   Sign IN

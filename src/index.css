@@ -1,14 +1,13 @@
 @import "normalize.css";
 
 body {
-   padding: 40px;
-   margin: 0;
+   margin: 120px 0 0 0 !important;
    font-family: 'Comfortaa', cursive;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    background-image: linear-gradient(to bottom, #323663, #323663 80%, #83698C);
    background-attachment: fixed;
-   margin-top: 80px;
+
 }
 
 code {

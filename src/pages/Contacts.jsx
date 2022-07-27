@@ -3,7 +3,8 @@ import Section from '../components/Section';
 import ContactForm from '../components/contactForm';
 import Filter from '../components/Filter';
 import ContactList from '../components/ContactList';
-import { Loader } from '../components/Loader/Loader';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { ThreeDots } from 'react-loader-spinner';
 import { useFetchContactsQuery } from 'redux/contacts/contactsApiSlice';
 import { useState } from 'react';
 
@@ -19,7 +20,20 @@ const Contacts = () => {
       <Section title="Create a new contact">
         <ContactForm />
       </Section>
-      {isLoading && <Loader />}
+      {isLoading && (
+        <ThreeDots
+          height="80"
+          width="80"
+          radius="9"
+          color="#00000080"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        />
+      )}
 
       {showData && (
         <Section title="Contacts">

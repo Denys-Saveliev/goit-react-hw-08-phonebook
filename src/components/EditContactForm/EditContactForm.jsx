@@ -6,7 +6,6 @@ import {
   useEditContactMutation,
   useFetchContactsQuery,
 } from 'redux/contacts/contactsApiSlice';
-import { Loader } from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
 
 const warningNameValidation = () =>
@@ -33,7 +32,7 @@ const schema = yup.object().shape({
 const EditContactForm = ({ close, initialValues }) => {
   const { data } = useFetchContactsQuery();
 
-  const [editContact, { isLoading }] = useEditContactMutation();
+  const [editContact] = useEditContactMutation();
 
   const handleSubmit = (values, { resetForm }) => {
     if (
@@ -69,7 +68,7 @@ const EditContactForm = ({ close, initialValues }) => {
         <ErrorMessage name="number" render={warningNumberValidation} />
 
         <button className={s.btn} type="submit">
-          {isLoading ? <Loader /> : 'Save'}
+          Save
         </button>
       </Form>
     </Formik>

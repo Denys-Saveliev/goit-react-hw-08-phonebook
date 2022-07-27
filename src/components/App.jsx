@@ -6,8 +6,9 @@ import { useFetchCurrentUserQuery } from 'redux/auth/authApiSlice';
 import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { AppNavBar } from './AppNavBar/AppNavBar';
-import { Loader } from './Loader/Loader';
 import MainContainer from './MainContainer/MainContainer';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { ThreeDots } from 'react-loader-spinner';
 
 const Register = lazy(() => import('../pages/Register'));
 const Login = lazy(() => import('../pages/Login'));
@@ -29,12 +30,38 @@ function App() {
   return (
     <>
       {isLoading ? (
-        <Loader />
+        <ThreeDots
+          height="80"
+          width="80"
+          radius="9"
+          color="#00000080"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        />
       ) : (
         <>
           <AppNavBar />
           <MainContainer>
-            <Suspense fallback={<Loader />}>
+            <Suspense
+              fallback={
+                <ThreeDots
+                  height="80"
+                  width="80"
+                  radius="9"
+                  color="#00000080"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                />
+              }
+            >
               <Routes>
                 <Route path="*" element={<Navigate to="/register" />} />
                 <Route

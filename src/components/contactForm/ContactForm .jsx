@@ -6,7 +6,8 @@ import {
   useFetchContactsQuery,
   useCreateContactMutation,
 } from 'redux/contacts/contactsApiSlice';
-import { Loader } from 'components/Loader/Loader';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { ThreeDots } from 'react-loader-spinner';
 
 const warningNameValidation = () =>
   Notiflix.Notify.failure(
@@ -72,7 +73,22 @@ const ContactForm = () => {
         <ErrorMessage name="number" render={warningNumberValidation} />
 
         <button className={s.btn} type="submit">
-          {isLoading ? <Loader /> : 'Add contact'}
+          {isLoading ? (
+            <ThreeDots
+              height="20"
+              width="45"
+              radius="9"
+              color="#00000080"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            />
+          ) : (
+            'Add contact'
+          )}
         </button>
       </Form>
     </Formik>

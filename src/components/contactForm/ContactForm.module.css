@@ -72,6 +72,7 @@
 }
 
 .btn {
+   width: 105px;
    border-radius: 5px;
    padding: 5px 10px;
    cursor: pointer;

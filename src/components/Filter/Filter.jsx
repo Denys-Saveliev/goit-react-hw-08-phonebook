@@ -3,7 +3,7 @@ import s from './Filter.module.css';
 
 const Filter = ({ value, onChange }) => {
   return (
-    <>
+    <div className={s.inputWrapper}>
       <input
         className={s.input}
         placeholder="Find contacts by name"
@@ -12,7 +12,7 @@ const Filter = ({ value, onChange }) => {
         onChange={onChange}
       />
       <span className={s.inputFocusFilter}></span>
-    </>
+    </div>
   );
 };
 export default Filter;

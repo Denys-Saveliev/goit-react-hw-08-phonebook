@@ -34,20 +34,10 @@
 
 .input[type='text']~.inputNameFocus {
    top: 29px;
-   left: 35px;
+   left: 0;
 }
 
-@media screen and (min-width: 768px) {
-   .input[type='text']~.inputNameFocus {
-      left: 75px;
-   }
-}
 
-@media screen and (min-width: 1280px) {
-   .input[type='text']~.inputNameFocus {
-      left: 105px;
-   }
-}
 
 .input[type='text']:focus~.inputNameFocus,
 .input[type='tel']:focus~.inputTelFocus {
@@ -57,20 +47,10 @@
 
 .input[type='tel']~.inputTelFocus {
    top: 74px;
-   left: 35px;
+   left: 0;
 }
 
-@media screen and (min-width: 768px) {
-   .input[type='tel']~.inputTelFocus {
-      left: 75px;
-   }
-}
 
-@media screen and (min-width: 1280px) {
-   .input[type='tel']~.inputTelFocus {
-      left: 105px;
-   }
-}
 
 .btn {
    border-radius: 5px;

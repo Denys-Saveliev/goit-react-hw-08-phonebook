@@ -1,50 +1,77 @@
 import Container from '../components/Container';
 import Section from '../components/Section';
-import ContactForm from '../components/contactForm';
+import IconButton from 'components/IconButton/IconButton';
+import { ReactComponent as AddIcon } from '../Icons/plus.svg';
 import Filter from '../components/Filter';
 import ContactList from '../components/ContactList';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import { ThreeDots } from 'react-loader-spinner';
 import { useFetchContactsQuery } from 'redux/contacts/contactsApiSlice';
 import { useState } from 'react';
+import Modal from 'components/Modal/Modal';
+import AddEditContactForm from 'components/AddEditContactForm/AddEditContactForm';
 
 const Contacts = () => {
+  const [modalFormId, setModalFormId] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [filter, setfilter] = useState('');
+
   const handleFilterChange = e => setfilter(e.target.value);
-  const { isLoading, data } = useFetchContactsQuery();
+  const { data } = useFetchContactsQuery();
 
   const showData = data?.length > 0;
+
+  const contacts =
+    showData &&
+    data.filter(({ name }) =>
+      name.toLowerCase().includes(filter.toLowerCase())
+    );
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const setInitialFormikValues = id => {
+    return showData && contacts.find(contact => contact.id === id);
+  };
+
+  const initialValues = modalFormId
+    ? setInitialFormikValues(modalFormId)
+    : { name: '', number: '' };
+
+  const handleAddEditContactClick = id => {
+    setModalFormId(id);
+    toggleModal();
+  };
+
+  const clearModalId = () => setModalFormId(null);
 
   return (
     <Container>
       <Section title="Create a new contact">
-        <ContactForm />
+        <IconButton onClick={toggleModal} aria-label="Add contact">
+          <AddIcon width="20" height="20" fill="#00000080" />
+        </IconButton>
       </Section>
-      {isLoading && (
-        <ThreeDots
-          height="80"
-          width="80"
-          radius="9"
-          color="#00000080"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        />
-      )}
 
       {showData && (
         <Section title="Contacts">
           <Filter value={filter} onChange={handleFilterChange} />
 
-          <ContactList
-            contacts={data.filter(({ name }) =>
-              name.toLowerCase().includes(filter.toLowerCase())
-            )}
-          />
+          <ContactList edit={handleAddEditContactClick} contacts={contacts} />
         </Section>
+      )}
+      {showModal && (
+        <Modal onClose={toggleModal} onCloseForm={clearModalId}>
+          <Section
+            title={modalFormId ? 'Edit your contact' : 'Create a new contact'}
+          >
+            <AddEditContactForm
+              initialValues={initialValues}
+              onSubmit={toggleModal}
+              modalId={modalFormId}
+              onCloseForm={clearModalId}
+            />
+          </Section>
+        </Modal>
       )}
     </Container>
   );

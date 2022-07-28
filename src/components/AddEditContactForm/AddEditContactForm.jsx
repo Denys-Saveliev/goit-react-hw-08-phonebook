@@ -1,10 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import Notiflix from 'notiflix';
-import s from './EditContactForm.module.css';
+import s from './AddEditContactForm.module.css';
 import {
   useEditContactMutation,
   useFetchContactsQuery,
+  useCreateContactMutation,
 } from 'redux/contacts/contactsApiSlice';
 import PropTypes from 'prop-types';
 
@@ -29,12 +30,28 @@ const schema = yup.object().shape({
     .required(),
 });
 
-const EditContactForm = ({ close, initialValues }) => {
+const AddEditContactForm = ({
+  onSubmit,
+  initialValues,
+  modalId,
+  onCloseForm,
+}) => {
   const { data } = useFetchContactsQuery();
-
   const [editContact] = useEditContactMutation();
+  const [createContact] = useCreateContactMutation();
+  console.log(initialValues);
 
   const handleSubmit = (values, { resetForm }) => {
+    if (initialValues.name === '' && initialValues.number === '') {
+      createContact(values).then(() =>
+        Notiflix.Notify.success('Contact created succesfully!')
+      );
+    } else {
+      editContact(values).then(() =>
+        Notiflix.Notify.success('Contact edited succesfully!')
+      );
+    }
+
     if (
       data.find(
         contact => contact.name.toLowerCase() === values.name.toLowerCase()
@@ -44,11 +61,8 @@ const EditContactForm = ({ close, initialValues }) => {
       return;
     }
 
-    editContact(values).then(() =>
-      Notiflix.Notify.success('Contact edited succesfully!')
-    );
-
-    close();
+    onSubmit();
+    onCloseForm();
     resetForm();
   };
 
@@ -68,16 +82,16 @@ const EditContactForm = ({ close, initialValues }) => {
         <ErrorMessage name="number" render={warningNumberValidation} />
 
         <button className={s.btn} type="submit">
-          Save
+          {modalId ? 'Edit' : 'Save'}
         </button>
       </Form>
     </Formik>
   );
 };
 
-export default EditContactForm;
+export default AddEditContactForm;
 
-EditContactForm.propTypes = {
-  close: PropTypes.func.isRequired,
-  initialValues: PropTypes.object.isRequired,
+AddEditContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  initialValues: PropTypes.object,
 };

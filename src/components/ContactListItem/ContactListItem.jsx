@@ -26,16 +26,19 @@ export const ContactListItem = ({ id, name, number, edit }) => {
       </div>
       <div className={s.btnWrapper}>
         <a href={'tel:' + number} className={s.btnLink}>
-          <IconButton className={s.btn} aria-label="Phone">
+          <IconButton aria-label="Phone">
             <PhoneIcon fill="#32CD32" width="20px" height="20px" />
           </IconButton>
         </a>
 
-        <IconButton className={s.btn} aria-label="Edit contact" onClick={edit}>
+        <IconButton
+          aria-label="Edit contact"
+          style={{ marginRight: '10px' }}
+          onClick={() => edit(id)}
+        >
           <EditIcon fill="#00000080" width="20px" height="20px" />
         </IconButton>
         <IconButton
-          className={s.btn}
           aria-label="Delete contact"
           onClick={() => handleDeleteContact(id)}
         >

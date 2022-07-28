@@ -6,7 +6,7 @@ const Filter = ({ value, onChange }) => {
     <div className={s.inputWrapper}>
       <input
         className={s.input}
-        placeholder="Find contacts by name"
+        placeholder="Find contact by name"
         type="text"
         value={value}
         onChange={onChange}

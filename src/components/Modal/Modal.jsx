@@ -50,4 +50,9 @@ export default Modal;
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  onCloseForm: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };

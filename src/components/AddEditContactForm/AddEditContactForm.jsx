@@ -39,7 +39,6 @@ const AddEditContactForm = ({
   const { data } = useFetchContactsQuery();
   const [editContact] = useEditContactMutation();
   const [createContact] = useCreateContactMutation();
-  console.log(initialValues);
 
   const handleSubmit = (values, { resetForm }) => {
     if (initialValues.name === '' && initialValues.number === '') {
@@ -94,4 +93,6 @@ export default AddEditContactForm;
 AddEditContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
+  modalId: PropTypes.any,
+  onCloseForm: PropTypes.func.isRequired,
 };

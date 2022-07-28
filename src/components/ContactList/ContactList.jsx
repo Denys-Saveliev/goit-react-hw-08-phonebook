@@ -18,4 +18,5 @@ export default ContactList;
 
 ContactList.propTypes = {
   contacts: PropTypes.array.isRequired,
+  edit: PropTypes.func.isRequired,
 };

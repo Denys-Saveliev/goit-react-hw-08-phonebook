@@ -26,6 +26,9 @@ const Contacts = () => {
     );
 
   const toggleModal = () => {
+    if (showModal) {
+      setModalFormId(null);
+    }
     setShowModal(!showModal);
   };
 
@@ -41,8 +44,6 @@ const Contacts = () => {
     setModalFormId(id);
     toggleModal();
   };
-
-  const clearModalId = () => setModalFormId(null);
 
   return (
     <Container>
@@ -60,7 +61,7 @@ const Contacts = () => {
         </Section>
       )}
       {showModal && (
-        <Modal onClose={toggleModal} onCloseForm={clearModalId}>
+        <Modal onClose={toggleModal}>
           <Section
             title={modalFormId ? 'Edit your contact' : 'Create a new contact'}
           >
@@ -68,7 +69,6 @@ const Contacts = () => {
               initialValues={initialValues}
               onSubmit={toggleModal}
               modalId={modalFormId}
-              onCloseForm={clearModalId}
             />
           </Section>
         </Modal>

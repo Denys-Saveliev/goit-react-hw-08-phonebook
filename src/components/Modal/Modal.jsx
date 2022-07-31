@@ -7,7 +7,7 @@ import { ReactComponent as CloseIcon } from '../../Icons/closeModal.svg';
 
 const modalRoot = document.querySelector('#modal-root');
 
-function Modal({ onClose, onCloseForm, children }) {
+function Modal({ onClose, children }) {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -32,7 +32,6 @@ function Modal({ onClose, onCloseForm, children }) {
         <IconButton
           onClick={() => {
             onClose();
-            onCloseForm();
           }}
           aria-label="Close Editor"
           style={{ position: 'absolute', top: '10px', right: '10px' }}
@@ -50,7 +49,6 @@ export default Modal;
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  onCloseForm: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

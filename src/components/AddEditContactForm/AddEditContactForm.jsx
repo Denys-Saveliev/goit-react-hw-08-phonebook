@@ -30,12 +30,7 @@ const schema = yup.object().shape({
     .required(),
 });
 
-const AddEditContactForm = ({
-  onSubmit,
-  initialValues,
-  modalId,
-  onCloseForm,
-}) => {
+const AddEditContactForm = ({ onSubmit, initialValues, modalId }) => {
   const { data } = useFetchContactsQuery();
   const [editContact] = useEditContactMutation();
   const [createContact] = useCreateContactMutation();
@@ -61,7 +56,6 @@ const AddEditContactForm = ({
     }
 
     onSubmit();
-    onCloseForm();
     resetForm();
   };
 
@@ -94,5 +88,4 @@ AddEditContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
   modalId: PropTypes.any,
-  onCloseForm: PropTypes.func.isRequired,
 };

@@ -44,8 +44,10 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [loginUser, { isUninitialized }] = useLoginUserMutation();
+  const [loginUser] = useLoginUserMutation();
   const dispatch = useDispatch();
+
+  const disableBtn = () => email && password;
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -117,7 +119,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, fontWeight: '700' }}
-              disabled={!isUninitialized}
+              disabled={!disableBtn()}
             >
               Sign In
             </Button>

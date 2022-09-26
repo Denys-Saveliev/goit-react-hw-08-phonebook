@@ -17,7 +17,9 @@ const Contacts = lazy(() => import('../pages/Contacts'));
 function App() {
   const currentToken = useSelector(getCurrentToken);
   const dispatch = useDispatch();
-  const { data, isLoading } = useFetchCurrentUserQuery();
+  const { data, isLoading } = useFetchCurrentUserQuery(true, {
+    skip: !currentToken,
+  });
 
   useEffect(() => {
     if (data) {

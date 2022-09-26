@@ -43,9 +43,12 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const disableBtn = () => name && email && password;
+
   const dispatch = useDispatch();
 
-  const [registerUser, { isUninitialized }] = useRegisterUserMutation();
+  const [registerUser] = useRegisterUserMutation();
+
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
@@ -61,8 +64,8 @@ export default function Register() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const userData = await registerUser({ name, email, password }).unwrap();
 
+    const userData = await registerUser({ name, email, password }).unwrap();
     dispatch(setCredentials({ ...userData, email }));
 
     setName('');
@@ -135,7 +138,7 @@ export default function Register() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, fontWeight: '700' }}
-              disabled={!isUninitialized}
+              disabled={!disableBtn()}
             >
               Sign Up
             </Button>
